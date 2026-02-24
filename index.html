@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Pablo Vargas | Monocroma Studio</title>
+
+<link rel="manifest" href="manifest.json">
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
@@ -17,18 +20,75 @@ display:flex;
 justify-content:center;
 align-items:center;
 height:100vh;
+overflow:hidden;
 }
 
+/* PANTALLA DE CARGA */
+
+#loader{
+
+position:fixed;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+flex-direction:column;
+color:white;
+
+}
+
+#loader img{
+
+width:180px;
+animation: zoom 1.5s infinite alternate;
+
+}
+
+@keyframes zoom{
+
+from{transform:scale(1);}
+to{transform:scale(1.1);}
+
+}
+
+
+/* TARJETA */
+
 .card{
+
 width:340px;
 background:white;
 border-radius:30px;
 overflow:hidden;
 text-align:center;
 box-shadow:0 0 30px rgba(255,255,255,0.2);
+
+animation: subir 0.8s ease;
+
 }
 
+@keyframes subir{
+
+from{
+opacity:0;
+transform:translateY(40px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+
+/* HEADER */
+
 .top{
+
 background:black;
 height:160px;
 border-bottom-left-radius:60% 40%;
@@ -37,47 +97,63 @@ display:flex;
 justify-content:center;
 align-items:flex-start;
 padding-top:20px;
+
 }
 
 .logo{
+
 width:180px;
-margin-top:-10px;
+
 }
 
 .photo{
+
 width:120px;
 height:120px;
 border-radius:50%;
 border:6px solid white;
 margin-top:-60px;
 object-fit:cover;
+
 }
 
 .name{
+
 font-size:22px;
 font-weight:bold;
 margin-top:10px;
+
 }
 
 .title{
+
 color:gray;
 margin-bottom:20px;
+
 }
 
+/* BOTONES */
+
 .buttons{
+
 display:grid;
 grid-template-columns:repeat(3,1fr);
 gap:20px;
 padding:20px;
+
 }
 
 .btn{
+
 text-decoration:none;
 color:black;
 font-size:13px;
+transition:0.3s;
+
 }
 
 .icon{
+
 width:60px;
 height:60px;
 background:black;
@@ -89,6 +165,13 @@ align-items:center;
 margin:auto;
 font-size:22px;
 margin-bottom:8px;
+
+}
+
+.btn:active{
+
+transform:scale(0.9);
+
 }
 
 </style>
@@ -97,65 +180,142 @@ margin-bottom:8px;
 
 <body>
 
-<div class="card">
+
+<!-- CARGA -->
+
+<div id="loader">
+
+<img src="logo.jpeg">
+
+<p>Cargando...</p>
+
+</div>
+
+
+
+<!-- TARJETA -->
+
+<div class="card" id="card" style="display:none;">
+
 
 <div class="top">
+
 <img src="logo.jpeg" class="logo">
+
 </div>
+
 
 <img src="foto.jpeg" class="photo">
 
+
 <div class="name">
+
 Pablo Vargas
+
 </div>
 
+
 <div class="title">
+
 Gerente De Ventas
+
 </div>
+
 
 <div class="buttons">
 
+
 <a href="mailto:monocromaestudiopty@gmail.com" class="btn">
+
 <div class="icon">
+
 <i class="fa fa-envelope"></i>
+
 </div>
+
 Email
+
 </a>
+
+
 
 <a href="https://monocromastudiopty.netlify.app" class="btn">
+
 <div class="icon">
+
 <i class="fa fa-globe"></i>
+
 </div>
+
 Web
+
 </a>
+
+
 
 <a href="https://wa.me/50769099200" class="btn">
+
 <div class="icon">
+
 <i class="fab fa-whatsapp"></i>
+
 </div>
+
 WhatsApp
+
 </a>
+
+
 
 <a onclick="guardar()" class="btn">
+
 <div class="icon">
+
 <i class="fa fa-address-card"></i>
+
 </div>
+
 Guardar
+
 </a>
+
+
 
 <a href="https://maps.google.com/?q=Urb.+Piamonte,+Casa+45" class="btn">
+
 <div class="icon">
+
 <i class="fa fa-location-dot"></i>
+
 </div>
+
 Ubicación
+
 </a>
 
+
 </div>
 
 </div>
+
 
 
 <script>
+
+
+/* CARGA */
+
+setTimeout(()=>{
+
+document.getElementById("loader").style.display="none";
+
+document.getElementById("card").style.display="block";
+
+},1500);
+
+
+
+/* GUARDAR CONTACTO */
 
 function guardar(){
 
@@ -186,6 +346,7 @@ link.click();
 }
 
 </script>
+
 
 </body>
 </html>
